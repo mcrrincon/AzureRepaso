@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ejercicio</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Secretos del Mundo</h1>
+                <hr />
+                <div class="form-group">
+                    <label>Pregunta</label>
+                    <input type="text" class="form-control" name="i1" id="i1" />
+                </div>
+                <br />
+                <button class="btn btn-success" id="b1">Enviar Sync</button>
+                <button class="btn btn-success" id="b2">Enviar Async</button>
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-12">
+                <div id="r1"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //+ Método: GET                                                     + 
+        //+ Parámetro: p = secreto de x (madrid, new york, tokio, londres)  +
+        //+ URL: http://demos.network/api/secretos.ashx                     +
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        //TODO: Recupera información del sitio sereto en modo síncrono
+
+        document.getElementById('b1').onclick = function () {
+            var datos = 'p=' + document.getElementById('i1').value;
+            var url = 'http://demos.network/api/secretos.ashx?' + datos;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, false);
+            xhr.send();
+            var respuesta = xhr.responseText;
+            document.getElementById('r1').innerHTML = JSON.parse(respuesta).mensaje;
+        };
+
+        //TODO: Recupera información del sitio sereto en modo asíncrono
+        document.getElementById('b2').onclick = function () {
+        };
+    </script>
+</body>
+</html>

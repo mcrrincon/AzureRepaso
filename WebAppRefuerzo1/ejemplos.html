@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        var nombre = 'Borja';
+        var id = 30; 
+
+        //COMUNICACIÓN SINCRONA
+        //================================================================================
+        //0. Preparación de los datos
+        //   GET -> Anexos a la URL -> url?datos (? separa la URL de los datos que envío) 
+        //   Ejemplo: http://dominio.com/api/data?clave=valor&clave=valor&clave=valor
+
+        var datos = 'nombre=' + nombre + '&identificador=' + id; 
+        var url = 'http://dominio.com/api/data?' + datos;
+
+        //   POST -> En el BODY -> SEND(clave=valor) Formato Formulario
+        //   Requiere un Content-Type -> x-www-form-urlencoded
+        //   Ejemplo: clave=valor&clave=valor&clave=valor
+
+        //   POST -> En el BODY -> SEND(JSON({ clave: 'valor' })) Formato JSON
+        //   Podemos usar los Content-Type -> text/plain 
+        //                                 -> text/json 
+        //                                 -> application/json
+        //   Ejemplo: { nombre : 'Borja', id: 30 }
+
+
+        //1. Creamos una instancía del objeto XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+
+        //2. Configurar el objeto XMLHttpRequest mediante el método OPEN
+        xhr.open('GET', url, false);
+
+        //3. Configuar cabeceras del mensaje, opcional
+        xhr.setRequestHeader('Content-Type', 'text/plain');                 //Cabeceras Estandar
+        xhr.setRequestHeader('X-API-Key', 'ksdd-esdd-1de2-s44s-55ss');      //Cabeceras Relacionadas con Seguridad
+        xhr.setRequestHeader('X-Request-Data', new Date().toDateString());  //Cabeceras Meta-Datos
+
+        //4. Iniciar comunicación y enviamos el mensaje de petición REQUEST
+        //Method GET
+        xhr.send();
+
+        //Method POST  Content-Type -> x-www-form-urlencoded
+        xhr.send(datos);
+
+        //Method POST  Content-Type -> text/plain ...
+        xhr.send(JSON.stringify(datos));
+
+        //5. Acceso o lectura de los datos de respuesta
+        var respuesta = xhr.responseText;       //Texto o Texto en formato JSON
+        var respuesta = xhr.responseXML;        //Texto en formato XML
+        var respuesta = xhr.responseURL;        //Array de Bytes
+        var tipoRespuesta = xhr.responseType;
+
+        var dicCabeceras = xhr.getAllResponseHeaders();
+        var contentType = dicCabeceras['Content-Type'];
+
+        var contentType = xhr.getResponseHeader('Content-Type');
+
+        var CodigoEstadoHTTP = xhr.status;
+        var TextoEstadoHTTP = xhr.statusText;
+
+        //COMUNICACIÓN ASÍNCRONA
+        //0. Preparación de Datos y URL, igual
+        //1. Creación del Objeto, igual
+        var xhr2 = new XMLHttpRequest();
+
+        //2. Configuración
+        xhr2.open('GET', url, true);
+
+        //3. Configuar cabeceras del mensaje, opcional e igual
+        xhr2.setRequestHeader('Content-Type', 'text/plain'); 
+
+        //IMPORTANTE
+        //Cuando la comunicación es Asíncrona tenemos que controlar los estados por los que
+        //va pasando la comunicación para saber cuando finaliza y así poder acceder a los datos
+        //de la respuesta.
+        //Capturamos el eventos de cambio de estado de la comunicación SIEMPRE antes del SEND.
+        xhr2.onreadystatechange = function (e) {
+            if (xhr2.readyState == 4) {
+                if (xhr2.status == 200) {
+                    //Lectura de la respuesta igual que el paso 5 de la comunicación Síncrona
+                    var respuesta = xhr.responseText;
+                } else {
+                    alert('Ufff error:' + xhr.statusText);
+                }
+            }
+        };
+
+        //4. Iniciar comunicación y enviamos el mensaje de petición REQUEST, igual
+        xhr2.send();
+    </script>
+</body>
+</html>
