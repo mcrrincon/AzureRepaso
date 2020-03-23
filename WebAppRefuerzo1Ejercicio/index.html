@@ -20,11 +20,32 @@
         <br /><br />
         <div class="row">
             <div class="col-12">
-                <div id="r1"></div>
+                <div id="r1">
+                    
+                </div>
             </div>
         </div>
     </div>
     <script>
+        function SedeToHTML(sede) {
+            var html = '';
+            html += '<div class="row">';
+
+            html += '<div class="col-3">';
+            html += '<img src="/img/' + sede['Photo[image]'] + '" class="img-thumbnail" />';
+            html += '</div>';
+
+            html += '<div class="col-9">';
+            html += '<h2>' + sede.Address + '</h2>';
+            html += '<h4>' + sede.City + ' - ' + sede.State + ' ' + sede.Zip + '</h4>';
+            html += '<p>' + sede.Description + '</p>';
+            html += '</div>';
+
+            html += '</div><br />';
+
+            return html;
+        }
+
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         //+ Método: GET                                                     +
         //+ Parámetro: id = all                                             +
@@ -35,17 +56,47 @@
         //TODO: Recupera la información de las sedes de Contoso en Síncrono y pintalas en el HTML.
         //      La imagen RESULTADO-WebAppRefuerzo1Ejercicio.jpg muestra como se debe pintar la información en el HTML.
         //      Las imagenes de las sedes están en la carpeta img.
-
         document.getElementById('b1').onclick = function () {
+            var url = '/api/data.ashx?id=all';
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, false);
+            xhr.setRequestHeader('API-Key', 'ce4def9a-beb1-4225-82fb-897109f5d778');
+            xhr.send();
+            var respuesta = JSON.parse(xhr.responseText);
 
+            document.getElementById('r1').innerHTML = '';
+
+            for (var index in respuesta) {
+                var html = SedeToHTML(respuesta[index]);
+                document.getElementById('r1').innerHTML += html;
+            }
         };
 
         //TODO: Recupera la información de las sedes de Contoso en Asíncrono y pintalas en el HTML
         //      La imagen RESULTADO-WebAppRefuerzo1Ejercicio.jpg muestra como se debe pintar la información en el HTML.
         //      Las imagenes de las sedes están en la carpeta img.
-
         document.getElementById('b2').onclick = function () {
+            var url = '/api/data.ashx?id=all';
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, false);
+            xhr.setRequestHeader('API-Key', 'ce4def9a-beb1-4225-82fb-897109f5d778');
+            xhr.onreadystatechange = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var respuesta = JSON.parse(xhr.responseText);
 
+                        document.getElementById('r1').innerHTML = '';
+
+                        for (var index in respuesta) {
+                            var html = SedeToHTML(respuesta[index]);
+                            document.getElementById('r1').innerHTML += html;
+                        }
+                    } else {
+                        document.getElementById('r1').innerHTML = 'Error: ' + xhr.statusText;
+                    }
+                }
+            }
+            xhr.send();
         };
     </script>
 </body>

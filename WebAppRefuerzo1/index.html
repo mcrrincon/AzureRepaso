@@ -35,8 +35,9 @@
         //+ URL: http://demos.network/api/secretos.ashx                     +
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        //TODO: Recupera información del sitio sereto en modo síncrono
-
+        /////////////////////////////////////////////////////////////////////
+        // TODO: Recupera información del sitio sereto en modo síncrono
+        /////////////////////////////////////////////////////////////////////
         document.getElementById('b1').onclick = function () {
             var datos = 'p=' + document.getElementById('i1').value;
             var url = 'http://demos.network/api/secretos.ashx?' + datos;
@@ -46,9 +47,25 @@
             var respuesta = xhr.responseText;
             document.getElementById('r1').innerHTML = JSON.parse(respuesta).mensaje;
         };
-
-        //TODO: Recupera información del sitio sereto en modo asíncrono
+        /////////////////////////////////////////////////////////////////////
+        // TODO: Recupera información del sitio sereto en modo asíncrono
+        /////////////////////////////////////////////////////////////////////
         document.getElementById('b2').onclick = function () {
+            var datos = 'p=' + document.getElementById('i1').value;
+            var url = 'http://demos.network/api/secretos.ashx?' + datos;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, false);
+            xhr.onreadystatechange = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var respuesta = xhr.responseText;
+                        document.getElementById('r1').innerHTML = JSON.parse(respuesta).mensaje;
+                    } else {
+                        document.getElementById('r1').innerHTML = 'Error: ' + xhr.statusText;
+                    }
+                }
+            };
+            xhr.send();
         };
     </script>
 </body>
