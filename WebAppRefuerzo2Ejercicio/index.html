@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 2</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Trabajando con APIRest</h1>
+                <hr />
+                <div class="form-group">
+                    <label>Datos</label>
+                    <input type="text" class="form-control" name="i1" id="i1" />
+                    <span id="s1"></span>
+                </div>
+                <br />
+                <button class="btn btn-success" id="b1">Demo 1</button>
+                <button class="btn btn-success" id="b2">Demo 2</button>
+                <button class="btn btn-success" id="b3">Demo 3</button>
+                <button class="btn btn-success" id="b4">Demo 4</button>
+                <button class="btn btn-success" id="b5">Demo 5</button>
+                <button class="btn btn-success" id="b6">Demo 6</button>
+                <button class="btn btn-success" id="b7">Demo 7</button>
+                <button class="btn btn-success" id="b8">Demo 8</button>
+                <button class="btn btn-success" id="b9">Demo 9</button>
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-12">
+                <textarea class="form-control" rows="20" id="t1"></textarea>
+            </div>
+        </div>
+    </div>
+    <script>
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //+ Método: GET                                                        +
+        //+                                                                    +
+        //+ Parámetro: type=xml (para respuestas en XML                        +
+        //+ Parámetro: type=json (para respuestas en JSON                      +
+        //+                                                                    +
+        //+ El parámetro type determina si la respuesta es en formato XML o en +
+        //+ formato JSON.                                                      +
+        //+                                                                    +
+        //+ Ejemplo:                                                           +
+        //+   http://northwind.demos.network/api/customers/ANATR?type=xml      +
+        //+   http://northwind.demos.network/api/customers/ANATR?type=json     +
+        //+                                                                    +
+        //+ También podemos seleccionar el tipo de respuesta utilizando la     +
+        //+ cabecera Accept con los valores application/xml o application/json +
+        //+                                                                    +
+        //+ URL: http://northwind.demos.network/api/                           +
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // TODO: Recupera los datos del cliente con identificador especificado en el INPUT, por ejemplo ANATR.
+        //       JavaScript, Síncrono y JSON utilizando el parámetro type
+        //       URL: http://northwind.demos.network/api/customers/ANATR
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        document.getElementById('b1').onclick = function (e) {
+        };
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // TODO: Recupera los datos del cliente con identificador especificado en el INPUT, por ejemplo ANATR.
+        //       JavaScript, Síncrono y XML utilizando el la cebecera Accept
+        //       URL: http://northwind.demos.network/api/customers/ANATR
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        document.getElementById('b2').onclick = function (e) {
+        };
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // TODO: Recupera los datos del empleado con identificador especificado en el INPUT, por ejemplo 5.
+        //       JavaScript, Asíncrono y XML utilizando el parámetro type
+        //       URL: http://northwind.demos.network/api/employees/5
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        document.getElementById('b3').onclick = function (e) {
+        };
+
+        /////////////////////////////////////////////////////////////////////
+        // TODO: Recupera los datos del empleado con identificador especificado en el INPUT, por ejemplo 5.
+        //       JavaScript, Asíncrono y JSON utilizando el la cebecera Accept
+        //       URL: http://northwind.demos.network/api/employees/5
+        /////////////////////////////////////////////////////////////////////
+        document.getElementById('b4').onclick = function (e) {
+        };
+
+        /////////////////////////////////////////////////////////////////////
+        // TODO: Recupera el listado completo de categorías.
+        //       jQuery $.get, Asíncrono y XML utilizando el parámetro type
+        //       URL: http://northwind.demos.network/api/categories
+        /////////////////////////////////////////////////////////////////////
+        document.getElementById('b5').onclick = function (e) {
+        };
+
+        /////////////////////////////////////////////////////////////////////
+        // TODO: Recupera los datos del proucto con identificador especificado en el INPUT, por ejemplo 5.
+        //       jQuery $.get, Asíncrono y JSON utilizando el parámetro type
+        //       URL: http://northwind.demos.network/api/products/5
+        /////////////////////////////////////////////////////////////////////
+        document.getElementById('b6').onclick = function (e) {
+        };
+
+        /////////////////////////////////////////////////////////////////////
+        // TODO: Recupera los datos del proucto con identificador especificado en el INPUT, por ejemplo 5.
+        //       jQuery $.ajax, Síncrono y JSON utilizando el la cebecera Accept
+        //       URL: http://northwind.demos.network/api/products/5
+        /////////////////////////////////////////////////////////////////////
+        document.getElementById('b7').onclick = function (e) {
+        };
+
+        /////////////////////////////////////////////////////////////////////
+        // TODO: Recupera los datos de clientes. El identificador especificado en el INPUT o listado completo el INPUT contiena la palabra ALL.
+        //       jQuery $.ajax, Asíncrono y JSON utilizando el la cebecera Accept (id opcional)
+        //       URL: http://northwind.demos.network/api/customers/id?  
+        /////////////////////////////////////////////////////////////////////
+        document.getElementById('b8').onclick = function (e) {
+        };
+
+        /////////////////////////////////////////////////////////////////////
+        // TODO: Recupera un listado completo de todas las empresas transportistas.
+        //       Ejercicio libre (como tu quieras)
+        //       URL: http://northwind.demos.network/api/shippers
+        /////////////////////////////////////////////////////////////////////
+        document.getElementById('b9').onclick = function (e) {
+        };
+    </script>
+</body>
+</html>

@@ -15,17 +15,20 @@
                 <br />
                 <button class="btn btn-success" id="b1">Cargar Sync</button>
                 <button class="btn btn-success" id="b2">Cargar Async</button>
+                <button class="btn btn-success" id="b3">Cargar $.ajax</button>
+                <button class="btn btn-success" id="b4">Cargar $.ajax Promesas</button>
             </div>
         </div>
         <br /><br />
         <div class="row">
             <div class="col-12">
                 <div id="r1">
-                    
+                    <img src="" class="img-thumbnail" />
                 </div>
             </div>
         </div>
     </div>
+    <script src="Scripts/jquery-3.0.0.min.js"></script>
     <script>
         function SedeToHTML(sede) {
             var html = '';
@@ -62,8 +65,8 @@
             xhr.open('GET', url, false);
             xhr.setRequestHeader('API-Key', 'ce4def9a-beb1-4225-82fb-897109f5d778');
             xhr.send();
-            var respuesta = JSON.parse(xhr.responseText);
 
+            var respuesta = JSON.parse(xhr.responseText);
             document.getElementById('r1').innerHTML = '';
 
             for (var index in respuesta) {
@@ -97,6 +100,63 @@
                 }
             }
             xhr.send();
+        };
+
+        //Utilización $.ajax con funciones de callback
+        document.getElementById('b3').onclick = function () {
+            //Llamadas GET/POST/PUT/DELETE con Ajax jQuery
+            // $.ajax({type, async?, url, data?, headers?, success, error?});
+            // ? significa opcional
+
+            $.ajax({
+                type: 'get',
+                async: true,
+                url: '/api/data.ashx',
+                data: { id: 'all' },
+                contentType: 'text/plain',
+                headers: { 'API-Key': 'ce4def9a-beb1-4225-82fb-897109f5d778' },
+                success: function (respuesta) {
+                    document.getElementById('r1').innerHTML = '';
+                    var datos = JSON.parse(respuesta);
+
+                    for (var index in datos) {
+                        var html = SedeToHTML(datos[index]);
+                        document.getElementById('r1').innerHTML += html;
+                    }
+                },
+                error: function (error) {
+                    alert('Ufff !!!');
+                }
+            });
+        };
+
+        //Utilización $.ajax con promesas
+        document.getElementById('b4').onclick = function () {
+            //Llamadas GET/POST/PUT/DELETE con Ajax jQuery
+            // $.ajax({type, async?, url, data?, headers?, success, error?});
+            // ? significa opcional
+
+            $.ajax({
+                type: 'get',
+                async: true,
+                url: '/api/data.ashx',
+                data: { id: 'all' },
+                contentType: 'text/plain',
+                headers: { 'API-Key': 'ce4def9a-beb1-4225-82fb-897109f5d778' }
+            }).done(function (respuesta) {
+                document.getElementById('r1').innerHTML = '';
+                var datos = JSON.parse(respuesta);
+
+                for (var index in datos) {
+                    var html = SedeToHTML(datos[index]);
+                    document.getElementById('r1').innerHTML += html;
+                }
+            }).fail(function (error) {
+                alert('Ufff !!!');
+            });
+            //.always(function () {
+            //    alert('Finalizado !!!');
+            //});
         };
     </script>
 </body>

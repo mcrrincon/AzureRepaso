@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <script>        
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         //+ Método: GET                                                     + 
         //+ Parámetro: p = secreto de x (madrid, new york, tokio, londres)  +
@@ -38,7 +38,7 @@
         /////////////////////////////////////////////////////////////////////
         // TODO: Recupera información del sitio sereto en modo síncrono
         /////////////////////////////////////////////////////////////////////
-        document.getElementById('b1').onclick = function () {
+        document.getElementById('b1').onclick = function (e) {
             var datos = 'p=' + document.getElementById('i1').value;
             var url = 'http://demos.network/api/secretos.ashx?' + datos;
             var xhr = new XMLHttpRequest();
@@ -47,21 +47,23 @@
             var respuesta = xhr.responseText;
             document.getElementById('r1').innerHTML = JSON.parse(respuesta).mensaje;
         };
+
         /////////////////////////////////////////////////////////////////////
         // TODO: Recupera información del sitio sereto en modo asíncrono
         /////////////////////////////////////////////////////////////////////
-        document.getElementById('b2').onclick = function () {
+        document.getElementById('b2').onclick = function (e) {
             var datos = 'p=' + document.getElementById('i1').value;
             var url = 'http://demos.network/api/secretos.ashx?' + datos;
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', url, false);
+            xhr.open('GET', url, true);
             xhr.onreadystatechange = function (e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         var respuesta = xhr.responseText;
                         document.getElementById('r1').innerHTML = JSON.parse(respuesta).mensaje;
                     } else {
-                        document.getElementById('r1').innerHTML = 'Error: ' + xhr.statusText;
+                        //Respuesta HTTP distinta de 200-OK
+                        document.getElementById('r1').innerHTML = xhr.status + '-' + xhr.statusText;
                     }
                 }
             };
