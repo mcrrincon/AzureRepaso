@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Demo Filtrado y Ordenación</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="padding:30px;">
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Tabla de Multiplicar</h1>
+                <hr />
+                <input type="text" class="form-control" id="i1" />
+                <br />
+                <button class="btn btn-success" id="b1">Pintar</button>
+                <br /><br />
+                <div id="r1"> </div>
+            </div>
+        </div>
+        <br /><br /><br /><hr />
+    </div>
+    <script>
+        document.getElementById('b1').onclick = function (e) {
+            var valor = parseInt(document.getElementById('i1').value);
+            var resultado = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(e => (e + ' x ' + valor + ' = ' + (e * valor)));
+
+            document.getElementById('r1').innerHTML = '';
+
+            for (var i in resultado) {
+                document.getElementById('r1').innerHTML += '<p>' + resultado[i] + '</p>';
+            }
+        }
+
+        var valores = [12, 125, 52, 151, 121, 51, 12, 515, 77, 211, 997, 62, 1216, 11, 921];
+        var frutas = ['Manzana', 'Banana', 'Fresa', 'Mango', 'Naraja', 'Pera', 'Limón', 'Maracuya', 'Pomelo', 'Sandía', 'Platano', 'Pomelo', 'Uva'];
+        var usuarios = [
+            { Nombre: 'Andrea', Apellidos: 'Sanz', Edad: 23 },
+            { Nombre: 'Julian', Apellidos: 'García', Edad: 18 },
+            { Nombre: 'Anne', Apellidos: 'Ranz', Edad: 24 },
+            { Nombre: 'José Carlos', Apellidos: 'Marte', Edad: 26 },
+            { Nombre: 'María', Apellidos: 'Calvo', Edad: 24 },
+            { Nombre: 'Soledad', Apellidos: 'Gómez', Edad: 21 }];
+
+        function PintaArray(array) {
+            for (var i in array) {
+                if (typeof array[i] === 'object') document.writeln(array[i].Nombre + ' ' + array[i].Apellidos + ' ' + array[i].Edad + '<br >');
+                else document.writeln(array[i] + '<br >');
+            }
+            document.writeln('==========================================<br />');
+        }
+
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Ordenación de valores alfanúmericos .sort() y .reverse()
+        /////////////////////////////////////////////////////////////////////////////////////
+
+        frutas.sort();
+        PintaArray(frutas);
+
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Ordenación de valores numéricos utilizamos una función de ordenación y retornamos 
+        //  - 0 > igual posición 
+        //  - 1 o mayor de 0 > avanza posición 
+        //  - -1 o menor de 0 < retrocede posición
+        /////////////////////////////////////////////////////////////////////////////////////
+
+        function OrdenarAsc(a, b) {
+            if (a === b) return 0;
+            if (a > b) return 1;
+            if (a < b) return -1;
+        }
+
+        function OrdenarAsc2(a, b) {
+            return a - b;
+        }
+
+        valores.sort(OrdenarAsc2);
+        PintaArray(valores);
+
+        var top10 = valores.sort(function (a, b) { return b - a; }).slice(0, 10);
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Ordenación de objetos, utilizamos una función que nos permite ordenar en base
+        // a una o varias propiedades
+        /////////////////////////////////////////////////////////////////////////////////////
+
+        function OrdenarEdad(a, b) {
+            return a.Edad - b.Edad;
+        }
+
+        function OrdenarEdadApellidos(a, b) {
+            if (a.Edad === b.Edad) {
+                if (a.Apellidos === b.Apellidos) return 0;
+                if (a.Apellidos > b.Apellidos) return 1;
+                if (a.Apellidos < b.Apellidos) return -1;
+            }
+            else return a.Edad - b.Edad;
+        }
+
+        usuarios.sort(OrdenarEdad);
+        PintaArray(usuarios);
+
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Filtrado de datos de una colección o Array. Utilizamos una función que retorna
+        // true para los elementos que cumplen con los criterios de filtrado
+        /////////////////////////////////////////////////////////////////////////////////////
+
+        function NumPar(a) {
+            if (!isNaN(a)) {
+                if ((a % 2) === 0) return true;
+            }
+        }
+
+        PintaArray(valores.filter(NumPar).sort(OrdenarAsc));
+        PintaArray(valores.filter(NumPar).sort(OrdenarAsc).slice(0, 2));
+
+        var max = Math.max.apply(null, valores.filter(NumPar));
+        document.writeln('Máximo: ' + max + '<br />');
+
+        var min = Math.min.apply(null, valores.filter(NumPar));
+        document.writeln('Minimo: ' + min + '<br />');
+
+        function ComienzaBP(a) {
+            if ('BPbp'.includes(a[0])) return true;
+        }
+
+        PintaArray(frutas.filter(ComienzaBP).sort());
+
+        function Mayores23(a) {
+            if (a.Edad > 23) return true;
+        }
+
+        PintaArray(usuarios.filter(Mayores23));
+
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Utilizamos MAP para crear nuevas coleciones de datos o Array partiendo de uno 
+        // inicial al que le aplicamos una función de calculo
+        /////////////////////////////////////////////////////////////////////////////////////
+
+        var valores2 = [142, 1.25, 5.2, 15.1, 120.51, 51.0, 1.2, 51.45855, 4.77, 2.4711, 9.97, 6.2, 121.6, 11, 9.21];
+
+        function Redondeo(a) {
+            return Math.round(a);
+        }
+
+        //Con función
+        PintaArray(valores2.map(Redondeo));
+
+        //Con expresion Lanbda
+        PintaArray(valores2.map((e) => Math.round(e)));
+
+        /////////////////////////////////////////////////////////////////////////////////////
+
+        function Mayores25(a) {
+            if (a.Edad > 25) return a;
+        }
+
+        //Mapeo y filtrado
+        PintaArray(usuarios.map(Mayores25).filter(function (a) { return a !== undefined ? true : false; }));
+
+        /////////////////////////////////////////////////////////////////////////////////////
+
+        function RaizCuadradaPares(e) {
+            if (e % 2 === 0) {
+                return Math.sqrt(e);
+            }
+        }
+
+        //Mapeo con indefinidos
+        PintaArray(valores.map(RaizCuadradaPares));
+
+        //Mapeo y filtrado de indefinidos
+        PintaArray(valores.map(RaizCuadradaPares).filter(function (e) { return e != undefined; }));
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Utilización de FIND
+        /////////////////////////////////////////////////////////////////////////////////////
+        document.writeln('Mayor de 25: ' + usuarios.find(e => e.Edad > 25).Nombre);
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Utilización de FOREACH
+        /////////////////////////////////////////////////////////////////////////////////////
+        var arraySQRT = valores.map((a) => Math.sqrt(a));
+        PintaArray(arraySQRT);
+
+        var arraySQRT2 = [];
+        valores.forEach((a) => arraySQRT2.push(Math.sqrt(a)));
+        valores.forEach((a) => document.writeln('* ' + Math.sqrt(a) + '<br />'));
+        PintaArray(arraySQRT2);
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Buscar datos en un documento XML
+        /////////////////////////////////////////////////////////////////////////////////////
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'http://northwind.demos.network/api/customers/ANATR?type=xml', false);
+        xhr.send();
+
+        docXML = xhr.responseXML;
+        document.writeln('Empresa: ' + docXML.getElementsByTagName('CompanyName')[0].childNodes[0].nodeValue + '<br />');
+        document.writeln('Ciudad: ' + docXML.getElementsByTagName('City')[0].innerHTML + '<br />');
+        document.writeln('País: ' + docXML.getElementsByTagName('Country')[0].innerHTML + '<br />');
+    </script>
+</body>
+</html>
