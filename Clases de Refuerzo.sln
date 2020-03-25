@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppRefuerzo2Ejercicio", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppRefuerzoFiltrado", "WebAppRefuerzoFiltrado\WebAppRefuerzoFiltrado.csproj", "{11CB7CA8-9DFD-45C6-8203-39F10194E2D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppRefuerzo3Ejercicio", "WebAppRefuerzo3Ejercicio\WebAppRefuerzo3Ejercicio.csproj", "{6EC58C40-2C69-4F00-A240-BF1688AA2373}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{11CB7CA8-9DFD-45C6-8203-39F10194E2D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11CB7CA8-9DFD-45C6-8203-39F10194E2D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11CB7CA8-9DFD-45C6-8203-39F10194E2D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC58C40-2C69-4F00-A240-BF1688AA2373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC58C40-2C69-4F00-A240-BF1688AA2373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC58C40-2C69-4F00-A240-BF1688AA2373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC58C40-2C69-4F00-A240-BF1688AA2373}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

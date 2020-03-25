@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 3</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Ordenación y filtrado</h1>
+                <hr />
+                <div class="form-group">
+                    <label>Total del Pedido 10248</label>
+                    <input class="form-control" id="i1" />
+                    <br />
+                    <button class="btn btn-success" id="b1">Calcular</button>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label>Producto de Mayor Stock de Condimentos</label>
+                    <input class="form-control" id="i2" />
+                    <br />
+                    <button class="btn btn-success" id="b2">Calcular</button>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label>Número de Pedidos</label>
+                    <input class="form-control" id="i3" />
+                    <br />
+                    <button class="btn btn-success" id="b3">Calcular</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('b1').onclick = function (e) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'http://northwind.demos.network/api/invoices?type=json', true);
+            xhr.onreadystatechange = function (e) {
+                var r = JSON.parse(xhr.responseText);
+                //TODO
+                //Filtrado: todas la lineas de pedido 10248 -> OrderID
+                //Ordenar: ordenas las lineas de pedido por el identificador de producto -> ProductoID
+                //Calcular: calcula el total del pedido utilizado forEach y muestralo en el INPUT
+
+            };
+            xhr.send();
+        }
+
+        document.getElementById('b2').onclick = function (e) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'http://northwind.demos.network/api/products_by_category?type=json', true);
+            xhr.onreadystatechange = function (e) {
+                var r = JSON.parse(xhr.responseText);
+                //TODO
+                //Filtrado: todos los productos de la categoría Condiments -> CategoryName
+                //Buscar: busca el producto de la categoría Condiments con el stock más alto y muestra nombre y stock en el INPUT -> ProductName, UnitsInStock
+                //        No se puede utilizar Math.max. Tiene que ordenar por precio y extrar con slice
+
+            };
+            xhr.send();
+        }
+
+        document.getElementById('b3').onclick = function (e) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'http://northwind.demos.network/api/invoices?type=json', true);
+            xhr.onreadystatechange = function (e) {
+                var r = JSON.parse(xhr.responseText);
+                //TODO
+                //Map: Creamos un nuevo array con los número de pedido -> OrderID
+                //Creamos un nuevo array utilizando for ó forEach ó filter que no contenga número de pedidos repetidos 
+                //y pintamos en el INPUIT el número de elementos que coincide con el número de pedido -> length 
+                //
+                //Con filter es dificil, centraros en el for o forEach
+
+
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
