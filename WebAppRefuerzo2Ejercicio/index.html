@@ -36,6 +36,7 @@
             </div>
         </div>
     </div>
+    <script src="Scripts/jquery-3.0.0.js"></script>
     <script>
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         //+ Método: GET                                                        +
@@ -62,6 +63,12 @@
         //       URL: http://northwind.demos.network/api/customers/ANATR
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         document.getElementById('b1').onclick = function (e) {
+            var xhr = new XMLHttpRequest();
+            var datos = document.getElementById('i1').value + '?type=json';
+            var url = 'http://northwind.demos.network/api/customers/' + datos;
+            xhr.open('get', url, false);
+            xhr.send();
+            document.getElementById('t1').value = xhr.responseText;
         };
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +77,13 @@
         //       URL: http://northwind.demos.network/api/customers/ANATR
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         document.getElementById('b2').onclick = function (e) {
+            var xhr = new XMLHttpRequest();
+            var datos = document.getElementById('i1').value;
+            var url = 'http://northwind.demos.network/api/customers/' + datos;
+            xhr.open('get', url, false);
+            xhr.setRequestHeader('Accept', 'application/xml');
+            xhr.send();
+            document.getElementById('t1').value = xhr.responseText;
         };
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,6 +108,14 @@
         //       URL: http://northwind.demos.network/api/categories
         /////////////////////////////////////////////////////////////////////
         document.getElementById('b5').onclick = function (e) {
+            var url = 'http://northwind.demos.network/api/categories?type=xml'
+            $.get(url, function (respuesta) {
+                //Es valido pinta [Object XMLDocument]
+                document.getElementById('t1').value = respuesta;
+
+                //También puede mostrar el código XML mediante esta sentencia
+                document.getElementById('t1').value = respuesta.documentElement.innerHTML;
+            });
         };
 
         /////////////////////////////////////////////////////////////////////
@@ -110,12 +132,22 @@
         //       URL: http://northwind.demos.network/api/products/5
         /////////////////////////////////////////////////////////////////////
         document.getElementById('b7').onclick = function (e) {
+            var url = 'http://northwind.demos.network/api/products/' + document.getElementById('i1').value;
+            $.ajax({
+                type: 'get',
+                url: url,
+                async: false,
+                headers: { 'Accept': 'application/json'},
+                success: function (respuesta) {
+                    document.getElementById('t1').value = JSON.stringify(respuesta);
+                }
+            });
         };
 
         /////////////////////////////////////////////////////////////////////
         // TODO: Recupera los datos de clientes. El identificador especificado en el INPUT o listado completo el INPUT contiena la palabra ALL.
         //       jQuery $.ajax, Asíncrono y JSON utilizando el la cebecera Accept (id opcional)
-        //       URL: http://northwind.demos.network/api/customers/id?  
+        //       URL: http://northwind.demos.network/api/customers/id?
         /////////////////////////////////////////////////////////////////////
         document.getElementById('b8').onclick = function (e) {
         };

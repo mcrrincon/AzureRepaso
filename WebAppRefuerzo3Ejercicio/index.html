@@ -46,6 +46,32 @@
                 //Ordenar: ordenas las lineas de pedido por el identificador de producto -> ProductoID
                 //Calcular: calcula el total del pedido utilizado forEach y muestralo en el INPUT
 
+                function filterOrder(e) {
+                    if (e.OrderID === 10248) return true;
+                }
+
+                function sortIDProduct(a, b) {
+                    if (a.ProductID === b.ProductID) return 0;
+                    if (a.ProductID > b.ProductID) return 1;
+                    if (a.ProductID < b.ProductID) return -1;
+                }
+
+                //1 con funciones
+                var filtrados = r.filter(filterOrder);
+                filtrados.sort(sortIDProduct);
+
+                //2 con funciones
+                var resultado = r.filter(filterOrder).sort(sortIDProduct);
+
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+                //3 sin funciones con lambda
+                var data = r.filter((e) => e.OrderID === 10248).sort((a, b) => a.ProductID - b.ProductID);
+
+                var total = 0;
+                data.forEach((e) => total += (e.UnitPrice * e.Quantity));
+
+                document.getElementById('i1').value = total.toFixed(2);
             };
             xhr.send();
         }
@@ -59,6 +85,7 @@
                 //Filtrado: todos los productos de la categoría Condiments -> CategoryName
                 //Buscar: busca el producto de la categoría Condiments con el stock más alto y muestra nombre y stock en el INPUT -> ProductName, UnitsInStock
                 //        No se puede utilizar Math.max. Tiene que ordenar por precio y extrar con slice
+
 
             };
             xhr.send();
