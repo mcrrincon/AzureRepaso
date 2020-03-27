@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppRefuerzo3Ejercicio", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonAppRefuerzo", "PythonAppRefuerzo\PythonAppRefuerzo.pyproj", "{EF06478A-1AF1-4651-A90A-79C098CE5110}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonAppAzure", "PythonAppAzure\PythonAppAzure.pyproj", "{6B0BC384-FF11-4BC3-A720-6AB5A73B6B0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppRefuerzo", "ConsoleAppRefuerzo\ConsoleAppRefuerzo.csproj", "{E46A55B0-F680-4062-978A-497237F420D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppOrdenarFiltrar", "ConsoleAppOrdenarFiltrar\ConsoleAppOrdenarFiltrar.csproj", "{64B105CA-60F2-47EA-906F-38DC543002CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +49,16 @@ Global
 		{6EC58C40-2C69-4F00-A240-BF1688AA2373}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF06478A-1AF1-4651-A90A-79C098CE5110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF06478A-1AF1-4651-A90A-79C098CE5110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B0BC384-FF11-4BC3-A720-6AB5A73B6B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B0BC384-FF11-4BC3-A720-6AB5A73B6B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46A55B0-F680-4062-978A-497237F420D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E46A55B0-F680-4062-978A-497237F420D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E46A55B0-F680-4062-978A-497237F420D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46A55B0-F680-4062-978A-497237F420D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64B105CA-60F2-47EA-906F-38DC543002CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64B105CA-60F2-47EA-906F-38DC543002CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64B105CA-60F2-47EA-906F-38DC543002CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64B105CA-60F2-47EA-906F-38DC543002CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
